@@ -1,4 +1,4 @@
-const CACHE_NAME = "lucky-pwa-1f8feaa59777846f";
+const CACHE_NAME = "lucky-pwa-4dec58de2f1be5b3";
 const APP_SHELL = "/lucky-bean-pwa/index.html";
 const PRECACHE_URLS = [
   "/lucky-bean-pwa/index.html",
@@ -15,8 +15,8 @@ const PRECACHE_URLS = [
   "/lucky-bean-pwa/pwa/icon-192.png",
   "/lucky-bean-pwa/pwa/icon-512.png",
   "/lucky-bean-pwa/samples/yellow-cartoon-example.png",
-  "/lucky-bean-pwa/assets/index-DTFv3xdB.js",
-  "/lucky-bean-pwa/assets/index-CFK6AQ4I.css"
+  "/lucky-bean-pwa/assets/index-BKLHnTqp.js",
+  "/lucky-bean-pwa/assets/index-HU5Ob1E0.css"
 ];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_URLS)));
@@ -36,8 +36,11 @@ self.addEventListener('fetch', event => {
     event.respondWith(fetch(request).then(response => response.ok ? response : Promise.reject(new Error('navigation failed'))).catch(() => caches.match(APP_SHELL)));
     return;
   }
-  event.respondWith(caches.match(request).then(cached => cached || fetch(request).then(response => {
-    if (response.ok) caches.open(CACHE_NAME).then(cache => cache.put(request, response.clone()));
+  event.respondWith(caches.match(request).then(cached => cached || fetch(request).then(async response => {
+    if (response.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      await cache.put(request, response.clone());
+    }
     return response;
   })));
 });
