@@ -1,4 +1,4 @@
-const CACHE_NAME = "lucky-pwa-4dec58de2f1be5b3";
+const CACHE_NAME = "lucky-pwa-a411742e4b6428f1";
 const APP_SHELL = "/lucky-bean-pwa/index.html";
 const PRECACHE_URLS = [
   "/lucky-bean-pwa/index.html",
@@ -15,8 +15,8 @@ const PRECACHE_URLS = [
   "/lucky-bean-pwa/pwa/icon-192.png",
   "/lucky-bean-pwa/pwa/icon-512.png",
   "/lucky-bean-pwa/samples/yellow-cartoon-example.png",
-  "/lucky-bean-pwa/assets/index-BKLHnTqp.js",
-  "/lucky-bean-pwa/assets/index-HU5Ob1E0.css"
+  "/lucky-bean-pwa/assets/index-BP24mYTn.js",
+  "/lucky-bean-pwa/assets/index-CtBX09LO.css"
 ];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_URLS)));
